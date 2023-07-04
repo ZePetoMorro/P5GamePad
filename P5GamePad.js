@@ -16,16 +16,17 @@ p5.prototype.gamePad=function(obj) {
 
     let joystickDirection = p5.Vector.sub(touchPosition, gamepadPosition);
 
-    // Limita o joystick dentro da DeadZone
+    
     if (joystickDirection.mag() > joystickRadius) {
       joystickDirection.normalize();
       joystickDirection.mult(joystickRadius);
     }
+    //.mag() é de magnitude, usado para verificar o comprimento do vetor que representa a direção do joystick.
+    //.normalize() é utilizada para garantir que o vetor joystickDirection tenha comprimento 1 após ser limitado pelo raio do joystick.
+    //.mult() é utilizada para redimensionar o vetor joystickDirection para que tenha o comprimento desejado, limitado pelo raio do joystick.
 
-    // Atualiza a posição da DeadZone
+      
     let deadZonePosition = p5.Vector.add(gamepadPosition, joystickDirection);
-
-    // Desenha a DeadZone e o joystick
     
     noFill();
     stroke("#33333396");
@@ -33,8 +34,7 @@ p5.prototype.gamePad=function(obj) {
     ellipse(gamepadPosition.x, gamepadPosition.y, joystickRadius * 2);
     fill("#33333396");
     ellipse(deadZonePosition.x, deadZonePosition.y, joystickDeadZone * 2);
-    
-    // Atualiza o objeto
+   
     obj.position.add(p5.Vector.mult(joystickDirection, obj.speed));
   } else {
     gamepadPosition = null;
