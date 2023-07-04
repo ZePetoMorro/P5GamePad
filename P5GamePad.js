@@ -25,13 +25,14 @@ p5.prototype.gamePad=function(obj) {
     let deadZonePosition = p5.Vector.add(gamepadPosition, joystickDirection);
 
     // Desenha a DeadZone e o joystick
+    push()
     noFill();
     stroke("#33333396");
     strokeWeight(4);
     ellipse(gamepadPosition.x, gamepadPosition.y, joystickRadius * 2);
     fill("#33333396");
     ellipse(deadZonePosition.x, deadZonePosition.y, joystickDeadZone * 2);
-
+    pop()
     // Atualiza o objeto
     obj.position.add(p5.Vector.mult(joystickDirection, obj.speed));
   } else {
