@@ -10,18 +10,15 @@ p5.prototype.gamePad=function(obj,cameraX,cameraY) {
     if (touches.length === 1) {
     let x = touches[0].x;
     let y = touches[0].y;
-    if(cameraX!=null&&cameraY!=null){
-    x -= cameraX;
-    y -= cameraY;
-    }else{
+    if(cameraX==null&&cameraY==null){
       cameraX=0
       cameraY=0}
     if (!gamepadPosition) {
       gamepadPosition = createVector(x, y);
     }
     touchPosition = createVector(x, y);
-
-    let joystickDirection = p5.Vector.sub(touchPosition, gamepadPosition);
+    let adjustedTouchPosition = createVector(touchPosition.x - cameraX, touchPosition.y - cameraY);
+    let joystickDirection = p5.Vector.sub(adjustedTouchPosition, gamepadPosition);
 
     
     if (joystickDirection.mag() > joystickRadius) {
