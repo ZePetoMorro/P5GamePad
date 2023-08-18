@@ -4,11 +4,18 @@ let joystickRadius = 50;
 let joystickDeadZone = 30;
 
 
-p5.prototype.gamePad=function(obj) {
+p5.prototype.gamePad=function(obj,cameraX,cameraY) {
+  
   push()
     if (touches.length === 1) {
     let x = touches[0].x;
     let y = touches[0].y;
+    if(cameraX!=null&&cameraY!=null){
+    x -= cameraX;
+    y -= cameraY;
+    }else{
+      cameraX=0
+      cameraY=0}
     if (!gamepadPosition) {
       gamepadPosition = createVector(x, y);
     }
