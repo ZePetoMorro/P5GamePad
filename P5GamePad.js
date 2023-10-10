@@ -4,7 +4,7 @@ let joystickRadius = 50;
 let joystickDeadZone = 30;
 
 
-p5.prototype.gamePad=function(obj) {
+p5.prototype.gamePad=function(obj,cameraX,cameraY) {
  
   push()
     if (touches.length === 1) {
